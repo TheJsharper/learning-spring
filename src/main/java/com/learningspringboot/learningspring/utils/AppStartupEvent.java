@@ -12,12 +12,14 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
 	
 	public AppStartupEvent(RoomRepository roomRepository) {
 		this.roomRepository = roomRepository;
+		System.out.println("Construct---------------------");
 				
 		
 	}
 	
 	@Override
 	public void onApplicationEvent(ApplicationReadyEvent event) {
+		System.out.println("======");
 		this.roomRepository.findAll().forEach(System.out::println);
 		
 	}
