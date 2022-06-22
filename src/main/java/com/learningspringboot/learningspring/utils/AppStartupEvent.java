@@ -1,48 +1,44 @@
 package com.learningspringboot.learningspring.utils;
 
-import javax.annotation.PostConstruct;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import com.learningspringboot.learningspring.api.RoomRepository;
 import com.learningspringboot.learningspring.data.Room;
-import com.learningspringboot.learningspringa.api.RoomRepository;
 
 @Component
-//@Order(0)
-public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent>{
-	@Autowired
-	private  RoomRepository roomRepository;
-	private Iterable<Room> iterator;
-	
-	/**/public AppStartupEvent(/*RoomRepository roomRepository*/) {
-		//this.roomRepository = roomRepository;
+@Order(value = 1)
+public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent> {
+
+	private RoomRepository roomRepository;
+
+	public AppStartupEvent(RoomRepository roomRepository) {
+		this.roomRepository = roomRepository;
+
 		System.out.println("Construct---------------------");
-				
-		//this.iterator =this.roomRepository.findAll();
-		
+
 	}
-	@PostConstruct
-    public void init() {
-       // LOG.info(Arrays.asList(environment.getDefaultProfiles()));
-		System.out.println("======");
-    }
-	
+
 	@Override
-	//@EventListener(ApplicationReadyEvent.class)
+	// @EventListener(ApplicationReadyEvent.class)
 	public void onApplicationEvent(ApplicationReadyEvent event) {
-		
-		if(this.roomRepository == null) {
-			System.out.println("JAAA");
-		}else {
-			System.out.println("NEIEN");
-		}
-		
+
+		System.out.println("NEIEN" + this.roomRepository);
+		Iterable<Room> rooms = this.roomRepository.findAll();
+		var list =StreamSupport.stream(rooms.spliterator(), false).collect(Collectors.toList());
+		System.out.println("lenGHT--->"+list.size());
+		rooms.forEach(r -> System.out.println("===>" + r));
+
 		System.out.println("====== onApplicationEvent ===");
-		//this.iterator.forEach(System.out::println);
-		
+		// this.iterator.forEach(System.out::println);
+
 	}
 
 }

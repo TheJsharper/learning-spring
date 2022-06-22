@@ -1,4 +1,4 @@
-package com.learningspringboot.learningspringa.api;
+package com.learningspringboot.learningspring.api;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
