@@ -12,6 +12,7 @@ import com.learningspringboot.learningspringa.api.RoomRepository;
 @Component
 public class WebClientEndPoint {
 
+
 	private final WebClient client;
 	private final RoomRepository roomRepository;
 
