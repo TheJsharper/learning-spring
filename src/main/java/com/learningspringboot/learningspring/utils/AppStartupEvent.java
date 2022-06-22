@@ -5,14 +5,13 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.learningspringboot.learningspring.data.Room;
 import com.learningspringboot.learningspringa.api.RoomRepository;
 
 @Component
-@Order(0)
+//@Order(0)
 public class AppStartupEvent implements ApplicationListener<ApplicationReadyEvent>{
 	@Autowired
 	private  RoomRepository roomRepository;
@@ -35,6 +34,13 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
 	//@EventListener(ApplicationReadyEvent.class)
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 		
+		if(this.roomRepository == null) {
+			System.out.println("JAAA");
+		}else {
+			System.out.println("NEIEN");
+		}
+		
+		System.out.println("====== onApplicationEvent ===");
 		//this.iterator.forEach(System.out::println);
 		
 	}

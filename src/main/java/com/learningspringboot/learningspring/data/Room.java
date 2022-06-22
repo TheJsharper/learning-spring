@@ -55,4 +55,9 @@ public class Room {
 		this.bedInfo = bedInfo;
 	}
 
+	@Override
+	public String toString() {
+		return "Room [id=" + id + ", name=" + name + ", roomNumber=" + roomNumber + ", bedInfo=" + bedInfo + "]";
+	}
+
 }
