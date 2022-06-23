@@ -1,10 +1,8 @@
 package com.learningspringboot.learningspring.utils;
 
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
-import org.apache.tomcat.util.http.fileupload.util.Streams;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.annotation.Order;
@@ -27,13 +25,12 @@ public class AppStartupEvent implements ApplicationListener<ApplicationReadyEven
 	}
 
 	@Override
-	// @EventListener(ApplicationReadyEvent.class)
 	public void onApplicationEvent(ApplicationReadyEvent event) {
 
 		System.out.println("NEIEN" + this.roomRepository);
 		Iterable<Room> rooms = this.roomRepository.findAll();
-		var list =StreamSupport.stream(rooms.spliterator(), false).collect(Collectors.toList());
-		System.out.println("lenGHT--->"+list.size());
+		var list = StreamSupport.stream(rooms.spliterator(), false).collect(Collectors.toList());
+		System.out.println("lenGHT--->" + list.size());
 		rooms.forEach(r -> System.out.println("===>" + r));
 
 		System.out.println("====== onApplicationEvent ===");
