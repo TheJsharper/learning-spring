@@ -8,4 +8,7 @@ import com.learningspringboot.learningspring.data.Room;
 @Repository
 public interface RoomRepository extends CrudRepository<Room, Long> {
 
+	
+	
+	
 }

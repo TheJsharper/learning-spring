@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import com.learningspringboot.learningspring.data.Room;
 @Repository
-public interface ReactiveRoomRepository extends ReactiveCrudRepository<Room, Long>{
+public interface ReactiveRoomRepository extends ReactiveCrudRepository<Room, Long>/**/{
 
 	
 
